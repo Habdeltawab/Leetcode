@@ -22,10 +22,27 @@
 
 // @lc code=start
 function encode(strs: string[]): string {
-	return '';
+	// Prefix each value in array
+	let mystr: string = '';
+
+	for (const s of strs) {
+		mystr += s.length + '#' + s;
+	}
+
+	return mystr;
 }
 
 function decode(s: string): string[] {
-	return [];
+	let myArr: string[] = [];
+	let i = 0;
+
+	while (i < s.length) {
+		let j = s.indexOf('#', i);
+		let num = Number(s.slice(i, j));
+		myArr.push(s.slice(j + 1, j + 1 + num));
+		i = j + 1 + num;
+	}
+
+	return myArr;
 }
 // @lc code=end
